@@ -17,13 +17,13 @@ feat_cols = ['Distance', 'PLong', 'DLatd', 'Haversine',
              'Phour', 'Pmin', 'Dhour', 'Dmin', 'Temp', 'Solar']
 
 scalar = joblib.load('models/scalar.joblib')
-ann = keras.models.load_model('models/ANN.h5')
+model = keras.models.load_model('models/ANN.h5')
                                                             
 def predict_duration(attributes: np.ndarray):
     # Retrun bike trip duration value
     scaled_attributes = scalar.transform(attributes)
     print(scaled_attributes)
-    pred = ann.predict(scaled_attributes)
+    pred = model.predict(scaled_attributes)
     return int(pred[0,0])
                               
 ########################################################################                              
